@@ -1,0 +1,297 @@
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  category: string;
+  description?: string;
+  benefits?: string[];
+  ingredients?: string[];
+}
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: 'Fresh Mixed Vegetables',
+    price: 12.99,
+    image: 'https://images.unsplash.com/photo-1700064165267-8fa68ef07167?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMGZydWl0cyUyMHZlZ2V0YWJsZXMlMjBoZWFsdGh5fGVufDF8fHx8MTc3NDA1MTA4MHww&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 150,
+    protein: 8,
+    carbs: 30,
+    fat: 2,
+    category: 'Vegetables',
+    description: 'A premium blend of fresh, organic vegetables including broccoli, carrots, bell peppers, and more. Perfect for maintaining a balanced diet.',
+    benefits: ['Rich in vitamins and minerals', 'High in dietary fiber', 'Supports immune system', 'Low in calories'],
+    ingredients: ['Broccoli', 'Carrots', 'Bell Peppers', 'Zucchini', 'Cauliflower']
+  },
+  {
+    id: 2,
+    name: 'Whey Protein Powder',
+    price: 49.99,
+    image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm90ZWluJTIwcG93ZGVyJTIwc3VwcGxlbWVudHxlbnwxfHx8fDE3NzQwMDg1MDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 120,
+    protein: 24,
+    carbs: 3,
+    fat: 1,
+    category: 'Supplements',
+    description: 'Premium whey protein isolate for muscle building and recovery. Fast-absorbing protein to support your fitness goals.',
+    benefits: ['Supports muscle growth', 'Quick absorption', 'Low in sugar and fat', 'Great taste'],
+    ingredients: ['Whey Protein Isolate', 'Natural Flavors', 'Stevia', 'Sunflower Lecithin']
+  },
+  {
+    id: 3,
+    name: 'Organic Almonds',
+    price: 15.99,
+    image: 'https://images.unsplash.com/photo-1772986800094-376489769860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbG1vbmRzJTIwbnV0cyUyMGhlYWx0aHl8ZW58MXx8fHwxNzc0MDYzNjk0fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 160,
+    protein: 6,
+    carbs: 6,
+    fat: 14,
+    category: 'Nuts',
+    description: 'Raw organic almonds packed with healthy fats, protein, and essential nutrients. Perfect for snacking or adding to meals.',
+    benefits: ['Rich in vitamin E', 'Heart-healthy fats', 'Good source of fiber', 'Energy boosting'],
+    ingredients: ['100% Organic Almonds']
+  },
+  {
+    id: 4,
+    name: 'Greek Yogurt Bowl',
+    price: 8.99,
+    image: 'https://images.unsplash.com/photo-1641494587136-eec74f1944ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlayUyMHlvZ3VydCUyMGJvd2x8ZW58MXx8fHwxNzc0MDE4NjY1fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 140,
+    protein: 20,
+    carbs: 10,
+    fat: 4,
+    category: 'Dairy',
+    description: 'Creamy Greek yogurt with live and active cultures. High in protein and probiotics for digestive health.',
+    benefits: ['High in protein', 'Probiotic-rich', 'Supports digestion', 'Bone health'],
+    ingredients: ['Organic Milk', 'Live Active Cultures', 'Natural Flavors']
+  },
+  {
+    id: 5,
+    name: 'Wild Salmon Fillet',
+    price: 24.99,
+    image: 'https://images.unsplash.com/photo-1614627293113-e7e68163d958?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWxtb24lMjBmaXNoJTIwaGVhbHRoeXxlbnwxfHx8fDE3NzM5Nzg1Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 280,
+    protein: 39,
+    carbs: 0,
+    fat: 13,
+    category: 'Seafood',
+    description: 'Premium wild-caught salmon rich in omega-3 fatty acids. Sustainably sourced for the highest quality.',
+    benefits: ['High in omega-3', 'Excellent protein source', 'Supports brain health', 'Wild-caught'],
+    ingredients: ['Wild-Caught Salmon']
+  },
+  {
+    id: 6,
+    name: 'Organic Quinoa',
+    price: 11.99,
+    image: 'https://images.unsplash.com/photo-1708949125682-c0cb09727101?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxxdWlub2ElMjBncmFpbnMlMjBoZWFsdGh5fGVufDF8fHx8MTc3NDA2MzY5NXww&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 222,
+    protein: 8,
+    carbs: 39,
+    fat: 4,
+    category: 'Grains',
+    description: 'Complete protein grain with all nine essential amino acids. Gluten-free and nutrient-dense superfood.',
+    benefits: ['Complete protein', 'Gluten-free', 'Rich in minerals', 'High in fiber'],
+    ingredients: ['100% Organic Quinoa']
+  },
+  {
+    id: 7,
+    name: 'Fresh Avocado',
+    price: 6.99,
+    image: 'https://images.unsplash.com/photo-1677555024309-19edb4a1d40e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdm9jYWRvJTIwaGVhbHRoeSUyMGZvb2R8ZW58MXx8fHwxNzczOTc4NTc2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 234,
+    protein: 3,
+    carbs: 12,
+    fat: 21,
+    category: 'Vegetables',
+    description: 'Ripe, creamy avocados packed with healthy monounsaturated fats and over 20 vitamins and minerals.',
+    benefits: ['Heart-healthy fats', 'Rich in potassium', 'Supports skin health', 'High in fiber'],
+    ingredients: ['Fresh Avocado']
+  },
+  {
+    id: 8,
+    name: 'Organic Chicken Breast',
+    price: 18.99,
+    image: 'https://images.unsplash.com/photo-1762631934518-f75e233413ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlja2VuJTIwYnJlYXN0JTIwcHJvdGVpbnxlbnwxfHx8fDE3NzQwNjQ2NDl8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 165,
+    protein: 31,
+    carbs: 0,
+    fat: 3.6,
+    category: 'Seafood',
+    description: 'Lean, organic chicken breast perfect for building muscle. Free-range and hormone-free.',
+    benefits: ['High protein content', 'Low in fat', 'Hormone-free', 'Versatile cooking'],
+    ingredients: ['Organic Chicken Breast']
+  },
+  {
+    id: 9,
+    name: 'Organic Blueberries',
+    price: 9.99,
+    image: 'https://images.unsplash.com/photo-1619186659765-d4900ee66331?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibHVlYmVycmllcyUyMGFudGlveGlkYW50fGVufDF8fHx8MTc3NDA2NDY0OXww&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 84,
+    protein: 1,
+    carbs: 21,
+    fat: 0.5,
+    category: 'Vegetables',
+    description: 'Fresh organic blueberries bursting with antioxidants and natural sweetness. Perfect for smoothies or snacking.',
+    benefits: ['High in antioxidants', 'Supports brain function', 'Anti-inflammatory', 'Rich in vitamin C'],
+    ingredients: ['100% Organic Blueberries']
+  },
+  {
+    id: 10,
+    name: 'Fresh Spinach',
+    price: 5.99,
+    image: 'https://images.unsplash.com/photo-1653842648037-2e449847a78d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGluYWNoJTIwbGVhZnklMjBncmVlbnN8ZW58MXx8fHwxNzczOTc4NTc4fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 23,
+    protein: 2.9,
+    carbs: 3.6,
+    fat: 0.4,
+    category: 'Vegetables',
+    description: 'Nutrient-dense leafy greens packed with iron, vitamins, and minerals. Organic and freshly harvested.',
+    benefits: ['Rich in iron', 'High in vitamins A and K', 'Supports eye health', 'Low calorie'],
+    ingredients: ['Organic Fresh Spinach']
+  },
+  {
+    id: 11,
+    name: 'Free Range Eggs',
+    price: 7.99,
+    image: 'https://images.unsplash.com/photo-1589786741892-824d46e61d61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlZ2dzJTIwcHJvdGVpbiUyMGJyZWFrZmFzdHxlbnwxfHx8fDE3NzQwNjQ2NTB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 155,
+    protein: 13,
+    carbs: 1.1,
+    fat: 11,
+    category: 'Dairy',
+    description: 'Farm-fresh free-range eggs from happy hens. Rich in protein and essential nutrients.',
+    benefits: ['Complete protein', 'Rich in choline', 'Supports muscle health', 'Free-range'],
+    ingredients: ['Free Range Eggs']
+  },
+  {
+    id: 12,
+    name: 'Organic Oats',
+    price: 8.99,
+    image: 'https://images.unsplash.com/photo-1578687595055-d15759a04151?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvYXRzJTIwZ3Jhbm9sYSUyMGNlcmVhbHxlbnwxfHx8fDE3NzQwNjQ2NTB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 389,
+    protein: 17,
+    carbs: 66,
+    fat: 7,
+    category: 'Grains',
+    description: 'Whole grain rolled oats perfect for a heart-healthy breakfast. Rich in fiber and sustained energy.',
+    benefits: ['Heart-healthy', 'High in fiber', 'Sustained energy', 'Supports digestion'],
+    ingredients: ['100% Organic Rolled Oats']
+  },
+  {
+    id: 13,
+    name: 'Chia Seeds',
+    price: 13.99,
+    image: 'https://images.unsplash.com/photo-1760533535534-c69f637df2e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlhJTIwc2VlZHMlMjBzdXBlcmZvb2R8ZW58MXx8fHwxNzc0MDY0NjUxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 486,
+    protein: 17,
+    carbs: 42,
+    fat: 31,
+    category: 'Supplements',
+    description: 'Nutrient-dense superfood seeds packed with omega-3s, fiber, and plant-based protein.',
+    benefits: ['High in omega-3', 'Rich in fiber', 'Plant protein', 'Supports heart health'],
+    ingredients: ['100% Organic Chia Seeds']
+  },
+  {
+    id: 14,
+    name: 'Organic Sweet Potato',
+    price: 4.99,
+    image: 'https://images.unsplash.com/photo-1757283961582-ab596b0ca595?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2VldCUyMHBvdGF0byUyMHZlZ2V0YWJsZXN8ZW58MXx8fHwxNzczOTg4NzgwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 86,
+    protein: 1.6,
+    carbs: 20,
+    fat: 0.1,
+    category: 'Vegetables',
+    description: 'Delicious organic sweet potatoes rich in beta-carotene and complex carbohydrates.',
+    benefits: ['Rich in vitamin A', 'Complex carbs', 'Anti-inflammatory', 'Supports immunity'],
+    ingredients: ['Organic Sweet Potato']
+  },
+  {
+    id: 15,
+    name: 'Protein Bars Pack',
+    price: 24.99,
+    image: 'https://images.unsplash.com/photo-1704650312560-4414980bab95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm90ZWluJTIwYmFyJTIwbnV0cml0aW9ufGVufDF8fHx8MTc3NDA2NDY1MXww&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 200,
+    protein: 20,
+    carbs: 22,
+    fat: 7,
+    category: 'Supplements',
+    description: 'Convenient protein bars perfect for on-the-go nutrition. Delicious and satisfying.',
+    benefits: ['Convenient nutrition', 'High protein', 'Low sugar', 'Great taste'],
+    ingredients: ['Whey Protein', 'Almonds', 'Oats', 'Dark Chocolate', 'Natural Sweeteners']
+  },
+  {
+    id: 16,
+    name: 'Cottage Cheese',
+    price: 6.99,
+    image: 'https://images.unsplash.com/photo-1754652327423-4e71f0d71b25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3R0YWdlJTIwY2hlZXNlJTIwZGFpcnl8ZW58MXx8fHwxNzc0MDY0NjUyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 98,
+    protein: 11,
+    carbs: 3.4,
+    fat: 4.3,
+    category: 'Dairy',
+    description: 'Low-fat cottage cheese with high protein content. Perfect for muscle recovery and weight management.',
+    benefits: ['High in protein', 'Low in calories', 'Calcium-rich', 'Supports muscle growth'],
+    ingredients: ['Organic Milk', 'Live Cultures', 'Salt']
+  },
+  {
+    id: 17,
+    name: 'Wild Tuna',
+    price: 16.99,
+    image: 'https://images.unsplash.com/photo-1651323529708-09c3fec4dbd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0dW5hJTIwZmlzaCUyMG9tZWdhfGVufDF8fHx8MTc3NDA2NDY1Mnww&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 184,
+    protein: 30,
+    carbs: 0,
+    fat: 6.3,
+    category: 'Seafood',
+    description: 'Premium wild-caught tuna packed with protein and omega-3 fatty acids.',
+    benefits: ['High in protein', 'Omega-3 rich', 'Sustainably caught', 'Low mercury'],
+    ingredients: ['Wild-Caught Tuna', 'Water', 'Sea Salt']
+  },
+  {
+    id: 18,
+    name: 'Brown Rice',
+    price: 9.99,
+    image: 'https://images.unsplash.com/photo-1763431158054-ccc996a3deac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicm93biUyMHJpY2UlMjBoZWFsdGh5JTIwZ3JhaW5zfGVufDF8fHx8MTc3NDA2NDY1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 112,
+    protein: 2.6,
+    carbs: 24,
+    fat: 0.9,
+    category: 'Grains',
+    description: 'Whole grain brown rice with a nutty flavor and chewy texture. Excellent source of fiber.',
+    benefits: ['Whole grain', 'High in fiber', 'Rich in minerals', 'Sustained energy'],
+    ingredients: ['100% Organic Brown Rice']
+  },
+  {
+    id: 19,
+    name: 'Walnuts',
+    price: 17.99,
+    image: 'https://images.unsplash.com/photo-1772986800094-376489769860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbG1vbmRzJTIwbnV0cyUyMGhlYWx0aHl8ZW58MXx8fHwxNzc0MDYzNjk0fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 654,
+    protein: 15,
+    carbs: 14,
+    fat: 65,
+    category: 'Nuts',
+    description: 'Premium walnuts rich in omega-3 ALA and antioxidants. Brain-healthy superfood.',
+    benefits: ['Brain health support', 'Omega-3 ALA', 'Antioxidant-rich', 'Heart-healthy'],
+    ingredients: ['100% Organic Walnuts']
+  },
+  {
+    id: 20,
+    name: 'Multivitamins',
+    price: 29.99,
+    image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm90ZWluJTIwcG93ZGVyJTIwc3VwcGxlbWVudHxlbnwxfHx8fDE3NzQwMDg1MDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    category: 'Supplements',
+    description: 'Complete daily multivitamin with essential vitamins and minerals for overall health and wellness.',
+    benefits: ['Complete nutrition', 'Immune support', 'Energy boost', 'Daily wellness'],
+    ingredients: ['Vitamins A, C, D, E, K', 'B-Complex', 'Minerals', 'Zinc', 'Magnesium']
+  }
+];
