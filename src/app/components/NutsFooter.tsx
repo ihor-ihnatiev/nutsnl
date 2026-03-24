@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Facebook, Instagram, Mail } from "lucide-react";
-import logo from "figma:asset/35e2bd39eec43a960bc5cfbcd59d5693f9a462fb.png";
+import logo from "@/assets/logo-nuts-nl.svg";
 
 // TikTok Icon SVG component
 const TikTokIcon = () => (
@@ -16,15 +16,12 @@ export function NutsFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
+            <div className="flex items-center mb-4">
               <img
                 src={logo}
-                alt="Nutsnl"
-                className="w-10 h-10 object-contain"
+                alt="Nuts.nl"
+                className="h-10 object-contain"
               />
-              <span className="text-xl font-semibold text-primary-foreground">
-                Nutsnl
-              </span>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Your premium destination for the finest selection of nuts from around

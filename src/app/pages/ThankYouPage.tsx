@@ -1,7 +1,7 @@
 import { NutsHeader } from "../components/NutsHeader";
 import { NutsFooter } from "../components/NutsFooter";
 import { Link, useLocation } from "react-router";
-import { CheckCircle, Mail, Package, Heart, ShoppingBag } from "lucide-react";
+import { CheckCircle, Mail, Package, Heart, ShoppingBag, Truck } from "lucide-react";
 
 export function ThankYouPage() {
   const location = useLocation();

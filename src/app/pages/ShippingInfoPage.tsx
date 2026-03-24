@@ -1,6 +1,6 @@
 import { NutsHeader } from "../components/NutsHeader";
 import { NutsFooter } from "../components/NutsFooter";
-import { Package, Truck, Clock, MapPin, DollarSign, Gift } from "lucide-react";
+import { Package, Truck, Clock, MapPin, Gift } from "lucide-react";
 
 export function ShippingInfoPage() {
   return (

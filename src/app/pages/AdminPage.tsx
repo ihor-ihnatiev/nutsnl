@@ -104,7 +104,7 @@ export function AdminPage() {
       category: formData.category,
       type: formData.type,
       price: parseFloat(formData.price),
-      oldPrice: formData.oldPrice ? parseFloat(formData.oldPrice) : null,
+      oldPrice: formData.oldPrice ? parseFloat(formData.oldPrice) : undefined,
       image: formData.image,
       description: formData.description,
       weight: formData.weight,
@@ -161,7 +161,7 @@ export function AdminPage() {
         category: values[1] || '',
         type: values[2] || '',
         price: parseFloat(values[3]) || 0,
-        oldPrice: values[4] ? parseFloat(values[4]) : null,
+        oldPrice: values[4] ? parseFloat(values[4]) : undefined,
         image: values[5] || '',
         description: values[6] || '',
         weight: values[7] || '',
@@ -279,23 +279,6 @@ export function AdminPage() {
     } finally {
       setIsImporting(false);
     }
-  };
-
-  const downloadTemplate = () => {
-    const template = 'Name,Category,Type,Price,Old Price,Image URL,Description,Weight,Origin,Article,Calories,Protein,Fat,Carbs\n' +
-      'Premium Almonds,Almonds,Raw Kernel,12.99,15.99,https://images.unsplash.com/photo-1508747703725-719777637510,Premium quality raw almonds from California,500g,California USA,20001,579,21g,50g,22g\n' +
-      'Deluxe Walnuts,Walnuts,Halves,14.99,,https://images.unsplash.com/photo-1566404791232-af9fe0ae8f8b,Fresh walnut halves rich in omega-3,500g,California USA,20002,654,15g,65g,14g';
-
-    const blob = new Blob([template], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'products_template.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-    toast.success('Template downloaded!');
   };
 
   const exportProducts = () => {

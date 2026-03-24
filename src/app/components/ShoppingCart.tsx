@@ -1,4 +1,4 @@
-import { X, ShoppingCart as ShoppingCartIcon, Minus, Plus, Trash2 } from 'lucide-react';
+import { X, Minus, Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { Product } from './ProductCard';
 import { Checkout } from './Checkout';

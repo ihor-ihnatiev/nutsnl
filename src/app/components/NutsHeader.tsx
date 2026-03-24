@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import { Search, ShoppingCart } from "lucide-react";
-import logo from "figma:asset/35e2bd39eec43a960bc5cfbcd59d5693f9a462fb.png";
+import logo from "@/assets/logo-nuts-nl.svg";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
 import { SearchModal } from "./SearchModal";
@@ -22,15 +22,12 @@ export function NutsHeader() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 sm:space-x-3">
+          <Link to="/" className="flex items-center">
             <img
               src={logo}
-              alt="Nutsnl"
-              className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+              alt="Nuts.nl"
+              className="h-10 sm:h-12 object-contain"
             />
-            <span className="text-xl sm:text-2xl font-bold text-primary-foreground hidden sm:inline">
-              Nutsnl
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

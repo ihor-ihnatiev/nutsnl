@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Apple, Heart, Leaf, Star, TrendingUp, Award, Users } from 'lucide-react';
+import { Apple, Heart, Leaf, Star } from 'lucide-react';
 
 export function Home() {
   const featuredProducts = [

@@ -1,4 +1,4 @@
-import { TrendingUp, ShoppingBag, DollarSign, Package, Activity, Heart, Flame, Droplet } from 'lucide-react';
+import { TrendingUp, ShoppingBag, DollarSign, Package, Activity, Heart } from 'lucide-react';
 import { Link } from 'react-router';
 
 export function Dashboard() {

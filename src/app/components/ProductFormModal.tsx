@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Save } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface Product {
   id: number;

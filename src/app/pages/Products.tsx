@@ -54,7 +54,7 @@ export function Products({ onAddToCart }: ProductsProps) {
             {categories.map((category) => (
               <button
                 key={category}
-                ref={(el) => (categoryRefs.current[category] = el)}
+                ref={(el) => { categoryRefs.current[category] = el; }}
                 onClick={() => setFilter(category)}
                 className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 snap-start ${
                   filter === category

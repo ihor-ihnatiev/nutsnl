@@ -2,7 +2,7 @@ import { NutsHeader } from "../components/NutsHeader";
 import { NutsFooter } from "../components/NutsFooter";
 import { Calendar, User, Clock, ArrowLeft, Share2 } from "lucide-react";
 import { Link, useParams } from "react-router";
-import heroImage from "figma:asset/a3541e9bf06ff9b1ac1c94f8421aae21f03b25f0.png";
+import heroImage from "@/assets/nuts-tips.png";
 
 interface BlogPostData {
   id: number;

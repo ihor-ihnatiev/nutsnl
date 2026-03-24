@@ -19,11 +19,6 @@ export function SalePage() {
   // Get products on sale (products with oldPrice)
   const saleProducts = products.filter((nut) => nut.oldPrice && nut.oldPrice > nut.price);
 
-  // Calculate total savings
-  const totalSavings = saleProducts.reduce((sum, product) => {
-    return sum + (product.oldPrice! - product.price);
-  }, 0);
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <NutsHeader />

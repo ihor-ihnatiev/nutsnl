@@ -19,9 +19,6 @@ export function HomePage() {
 
   const bestSellers = products.slice(0, 4);
   const hotDeal = products[1];
-  const hotDealOriginalPrice = hotDeal.price;
-  const hotDealDiscount = 25;
-  const hotDealPrice = hotDeal.price * (1 - hotDealDiscount / 100);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
