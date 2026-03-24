@@ -101,7 +101,7 @@ export function ManageOrders() {
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl mb-2 text-gray-900">Manage Orders</h1>
+          <h1 className="text-2xl sm:text-3xl mb-2 text-black">Manage Orders</h1>
           <p className="text-sm sm:text-base text-gray-600">View and manage all customer orders</p>
         </div>
 

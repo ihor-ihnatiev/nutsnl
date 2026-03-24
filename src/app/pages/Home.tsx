@@ -51,7 +51,7 @@ export function Home() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-green-50 to-green-100 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 text-gray-900">Welcome to NutriShop</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 text-black">Welcome to NutriShop</h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Your one-stop destination for premium nutrition products. 
             Fuel your body with the best quality supplements and healthy foods.

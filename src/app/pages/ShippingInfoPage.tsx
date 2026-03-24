@@ -13,7 +13,7 @@ export function ShippingInfoPage() {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-secondary/20 rounded-full mb-6">
             <Truck className="w-10 h-10 text-accent" />
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#2C2C18' }}>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-black">
             Shipping Information
           </h1>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: '#2C2C18', opacity: 0.7 }}>

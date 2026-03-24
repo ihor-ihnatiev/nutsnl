@@ -97,10 +97,10 @@ export function BlogPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 flex-1">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">
             Nuts & Nutrition Blog
           </h1>
-          <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-black/70 max-w-3xl mx-auto">
             Explore articles about health benefits, recipes, storage tips, and
             everything you need to know about premium nuts.
           </p>

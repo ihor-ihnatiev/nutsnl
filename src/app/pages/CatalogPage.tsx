@@ -56,6 +56,13 @@ export function CatalogPage() {
     toast.success(`${nut.name} added to cart!`);
   };
 
+  const handleClearFilters = () => {
+    setSelectedCategory("All");
+    setMinPrice(0);
+    setMaxPrice(maxProductPrice);
+    setShowOnlyOnSale(false);
+  };
+
   const filteredNuts = products.filter((nut) => {
     const categoryMatch =
       selectedCategory === "All" || nut.category === selectedCategory;
@@ -79,6 +86,7 @@ export function CatalogPage() {
             onPriceChange={handlePriceChange}
             showOnlyOnSale={showOnlyOnSale}
             onShowOnlyOnSaleChange={setShowOnlyOnSale}
+            onClearFilters={handleClearFilters}
           />
 
           {/* Filter Sidebar - Mobile */}
@@ -93,6 +101,7 @@ export function CatalogPage() {
               onShowOnlyOnSaleChange={setShowOnlyOnSale}
               isMobileOpen={mobileFilterOpen}
               onClose={() => setMobileFilterOpen(false)}
+              onClearFilters={handleClearFilters}
             />
           )}
 
@@ -100,7 +109,7 @@ export function CatalogPage() {
           <div>
             {/* Header with mobile filter button */}
             <div className="flex items-center justify-between mb-6 sm:mb-8">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold" style={{ color: '#2C2C18' }}>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">
                 Premium Nuts Collection
               </h1>
               <button

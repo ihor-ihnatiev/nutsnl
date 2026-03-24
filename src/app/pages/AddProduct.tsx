@@ -144,7 +144,7 @@ export function AddProduct() {
         </button>
 
         <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 lg:p-8">
-          <h1 className="text-2xl sm:text-3xl mb-6 text-gray-900">
+          <h1 className="text-2xl sm:text-3xl mb-6 text-black">
             {isEditMode ? 'Edit Product' : 'Add New Product'}
           </h1>
 

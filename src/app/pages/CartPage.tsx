@@ -26,7 +26,7 @@ export function CartPage() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-card rounded-lg p-8 sm:p-12 lg:p-16 shadow-lg border border-secondary/20">
               <ShoppingBag className="w-20 h-20 text-card-foreground/30 mx-auto mb-6" />
-              <h1 className="text-3xl sm:text-4xl font-bold text-card-foreground mb-4">
+              <h1 className="text-3xl sm:text-4xl font-bold text-black mb-4">
                 Your Cart is Empty
               </h1>
               <p className="text-lg text-card-foreground/70 mb-8">
@@ -62,7 +62,7 @@ export function CartPage() {
             <span>Continue Shopping</span>
           </Link>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold" style={{ color: '#2C2C18' }}>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
               Shopping Cart
             </h1>
             <button

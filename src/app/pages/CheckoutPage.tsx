@@ -96,7 +96,7 @@ export function CheckoutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 flex-1">
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-card rounded-lg p-8 sm:p-12 shadow-lg border border-secondary/20">
-              <h1 className="text-3xl sm:text-4xl font-bold text-card-foreground mb-4">
+              <h1 className="text-3xl sm:text-4xl font-bold text-black mb-4">
                 Your Cart is Empty
               </h1>
               <p className="text-lg text-card-foreground/70 mb-8">
@@ -131,7 +131,7 @@ export function CheckoutPage() {
             <ArrowLeft className="w-5 h-5" />
             <span>Back to Cart</span>
           </Link>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold" style={{ color: '#2C2C18' }}>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
             Checkout
           </h1>
         </div>

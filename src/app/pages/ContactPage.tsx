@@ -15,7 +15,7 @@ export function ContactPage() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 flex-1">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-center" style={{ color: '#2C2C18' }}>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-center text-black">
             Contact Us
           </h1>
 

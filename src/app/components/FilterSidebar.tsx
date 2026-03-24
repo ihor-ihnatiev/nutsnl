@@ -11,6 +11,7 @@ interface FilterSidebarProps {
   onShowOnlyOnSaleChange: (value: boolean) => void;
   isMobileOpen?: boolean;
   onClose?: () => void;
+  onClearFilters?: () => void;
 }
 
 export function FilterSidebar({
@@ -22,7 +23,8 @@ export function FilterSidebar({
   showOnlyOnSale,
   onShowOnlyOnSaleChange,
   isMobileOpen = false,
-  onClose
+  onClose,
+  onClearFilters
 }: FilterSidebarProps) {
   const { products } = useProducts();
   
@@ -131,6 +133,21 @@ export function FilterSidebar({
           </span>
         </label>
       </div>
+
+      {/* Clear Filters */}
+      {onClearFilters && (selectedCategory !== "All" || minPrice !== 0 || maxPrice !== maxPossiblePrice || showOnlyOnSale) && (
+        <button
+          onClick={() => {
+            onClearFilters();
+            if (isMobileOpen && onClose) {
+              onClose();
+            }
+          }}
+          className="mt-6 w-full py-2.5 px-4 rounded-lg border border-secondary text-secondary font-medium hover:bg-secondary hover:text-secondary-foreground transition-colors"
+        >
+          Clear all filters
+        </button>
+      )}
     </div>
   );
 

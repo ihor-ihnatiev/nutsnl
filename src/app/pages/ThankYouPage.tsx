@@ -24,7 +24,7 @@ export function ThankYouPage() {
               <CheckCircle className="w-16 h-16 sm:w-20 sm:h-20 text-green-600" />
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-4">
               Thank You!
             </h1>
             

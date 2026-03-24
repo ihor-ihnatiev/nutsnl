@@ -331,7 +331,7 @@ export function AdminPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-[#2C2C18] mb-2">Admin Panel</h1>
+            <h1 className="text-4xl font-bold text-black mb-2">Admin Panel</h1>
             <p className="text-[#2C2C18]/70">Manage your products catalog</p>
           </div>
           <div className="flex gap-3">

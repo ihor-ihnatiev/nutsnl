@@ -250,7 +250,7 @@ export function ProductList() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
           <div className="mb-4 sm:mb-0">
-            <h1 className="text-2xl sm:text-3xl mb-2 text-gray-900">Product List</h1>
+            <h1 className="text-2xl sm:text-3xl mb-2 text-black">Product List</h1>
             <p className="text-sm sm:text-base text-gray-600">Manage your product inventory</p>
           </div>
           <button

@@ -30,7 +30,7 @@ export function Contact() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-3xl sm:text-4xl mb-6 sm:mb-8 text-gray-900 text-center">Contact Us</h1>
+        <h1 className="text-3xl sm:text-4xl mb-6 sm:mb-8 text-black text-center">Contact Us</h1>
         <p className="text-base sm:text-lg text-gray-600 text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
           Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
         </p>

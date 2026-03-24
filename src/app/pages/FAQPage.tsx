@@ -144,7 +144,7 @@ export function FAQPage() {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-secondary/20 rounded-full mb-6">
             <HelpCircle className="w-10 h-10 text-accent" />
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">

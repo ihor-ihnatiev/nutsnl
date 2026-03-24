@@ -21,7 +21,7 @@ export function OrderConfirmationPage() {
             <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-green-100 rounded-full mb-6">
               <CheckCircle className="w-12 h-12 sm:w-14 sm:h-14 text-green-600" />
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">
               Order Confirmed!
             </h1>
             <p className="text-lg sm:text-xl text-foreground/70">

@@ -73,7 +73,7 @@ export function ProductDetail() {
                 <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs sm:text-sm rounded-full mb-2">
                   {product.category}
                 </span>
-                <h1 className="text-2xl sm:text-3xl mb-2">{product.name}</h1>
+                <h1 className="text-2xl sm:text-3xl mb-2 text-black">{product.name}</h1>
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (

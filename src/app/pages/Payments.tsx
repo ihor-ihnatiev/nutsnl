@@ -121,7 +121,7 @@ export function Payments() {
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl mb-2 text-gray-900">Payment History</h1>
+          <h1 className="text-2xl sm:text-3xl mb-2 text-black">Payment History</h1>
           <p className="text-sm sm:text-base text-gray-600">Track and manage all payment transactions</p>
         </div>
 

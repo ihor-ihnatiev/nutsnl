@@ -113,7 +113,7 @@ export function BlogPostPage() {
       <div className="min-h-screen bg-background flex flex-col">
         <NutsHeader />
         <div className="container mx-auto px-4 py-20 text-center flex-1">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl font-bold text-black mb-4">
             Article Not Found
           </h1>
           <Link
@@ -163,7 +163,7 @@ export function BlogPostPage() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-card-foreground mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 leading-tight">
                 {post.title}
               </h1>
 

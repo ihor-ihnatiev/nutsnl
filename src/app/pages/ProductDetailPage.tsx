@@ -17,7 +17,7 @@ export function ProductDetailPage() {
       <div className="min-h-screen bg-background">
         <NutsHeader />
         <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl font-bold text-black mb-4">
             Product Not Found
           </h1>
           <Link
@@ -76,7 +76,7 @@ export function ProductDetailPage() {
             <p className="text-lg text-card-foreground/60 mb-2">
               {product.category}
             </p>
-            <h1 className="text-3xl sm:text-4xl font-bold text-card-foreground mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-black mb-4">
               {product.category} {product.type}
             </h1>
 
