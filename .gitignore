@@ -24,5 +24,10 @@ npm-debug.log*
 # Cache
 .cache
 
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
 # Claude
 .claude

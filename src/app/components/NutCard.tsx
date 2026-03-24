@@ -11,7 +11,7 @@ export function NutCard({ nut, onAddToCart }: NutCardProps) {
   const isOnSale = nut.oldPrice && nut.oldPrice > nut.price;
   
   return (
-    <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col border border-secondary/20 relative">
+    <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col border border-secondary/20 relative h-full">
       {/* SALE Label */}
       {isOnSale && (
         <div className="absolute top-3 right-3 z-10 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg" style={{ backgroundColor: '#D98C2A' }}>
