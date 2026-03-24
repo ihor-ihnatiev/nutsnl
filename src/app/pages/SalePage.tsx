@@ -6,14 +6,16 @@ import { useCart } from "../context/CartContext";
 import { useProducts } from "../context/ProductsContext";
 import { Nut } from "../data/nuts";
 import { Tag, Clock, TrendingDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function SalePage() {
   const { addToCart } = useCart();
   const { products } = useProducts();
+  const { t } = useTranslation();
 
   const handleAddToCart = (nut: Nut) => {
     addToCart(nut);
-    toast.success(`${nut.name} added to cart!`);
+    toast.success(t('product.addedToCart', { name: nut.name }));
   };
 
   // Get products on sale (products with oldPrice)
@@ -36,17 +38,17 @@ export function SalePage() {
           <div className="relative z-10 px-6 sm:px-12 py-12 sm:py-16 lg:py-20">
             <div className="flex items-center space-x-2 mb-4">
               <Tag className="w-8 h-8 text-secondary" />
-              <span className="text-secondary font-bold text-lg">Special Offer</span>
+              <span className="text-secondary font-bold text-lg">{t('sale.specialOffer')}</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent-foreground mb-4">
-              Premium Nuts Sale
+              {t('sale.title')}
             </h1>
             <p className="text-lg sm:text-xl text-accent-foreground/90 mb-6 max-w-2xl">
-              Save big on our finest selection of premium nuts. Limited time offer!
+              {t('sale.subtitle')}
             </p>
             <div className="flex items-center space-x-2 text-accent-foreground/80">
               <Clock className="w-5 h-5" />
-              <span>Sale ends in 7 days</span>
+              <span>{t('sale.endsIn')}</span>
             </div>
           </div>
         </div>
@@ -64,25 +66,25 @@ export function SalePage() {
                   )}%`
                 : "0%"}
             </h3>
-            <p className="text-card-foreground/70">Maximum Discount</p>
+            <p className="text-card-foreground/70">{t('sale.maxDiscount')}</p>
           </div>
           <div className="bg-card rounded-lg p-6 text-center border border-secondary/20">
             <Tag className="w-12 h-12 text-accent mx-auto mb-3" />
             <h3 className="text-3xl font-bold text-accent mb-2">{saleProducts.length}</h3>
-            <p className="text-card-foreground/70">Products on Sale</p>
+            <p className="text-card-foreground/70">{t('sale.productsOnSale')}</p>
           </div>
           <div className="bg-card rounded-lg p-6 text-center border border-secondary/20">
             <Clock className="w-12 h-12 text-accent mx-auto mb-3" />
-            <h3 className="text-3xl font-bold text-accent mb-2">7 Days</h3>
-            <p className="text-card-foreground/70">Time Remaining</p>
+            <h3 className="text-3xl font-bold text-accent mb-2">{t('sale.days')}</h3>
+            <p className="text-card-foreground/70">{t('sale.timeRemaining')}</p>
           </div>
         </div>
 
         {/* Sale Products */}
         <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: '#2C2C18' }}>
-          Discounted Products
+          {t('sale.discountedProducts')}
         </h2>
-        
+
         {saleProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {saleProducts.map((nut) => (
@@ -94,20 +96,20 @@ export function SalePage() {
         ) : (
           <div className="bg-card rounded-lg p-12 text-center border border-secondary/20">
             <p className="text-xl text-card-foreground/70">
-              No products on sale at the moment. Check back soon!
+              {t('sale.noProducts')}
             </p>
           </div>
         )}
 
         {/* Terms Section */}
         <div className="mt-12 bg-card rounded-lg p-6 sm:p-8 border border-secondary/20">
-          <h3 className="text-xl font-bold text-card-foreground mb-4">Sale Terms & Conditions</h3>
+          <h3 className="text-xl font-bold text-card-foreground mb-4">{t('sale.termsTitle')}</h3>
           <ul className="space-y-2 text-card-foreground/70">
-            <li>• Offer valid for 7 days from the start date</li>
-            <li>• Discounts apply automatically at checkout</li>
-            <li>• Cannot be combined with other promotions</li>
-            <li>• Limited stock available on sale items</li>
-            <li>• All sale items are final sale - no returns or exchanges</li>
+            <li>• {t('sale.term1')}</li>
+            <li>• {t('sale.term2')}</li>
+            <li>• {t('sale.term3')}</li>
+            <li>• {t('sale.term4')}</li>
+            <li>• {t('sale.term5')}</li>
           </ul>
         </div>
       </div>

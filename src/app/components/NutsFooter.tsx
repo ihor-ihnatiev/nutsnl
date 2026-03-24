@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { Facebook, Instagram, Mail } from "lucide-react";
 import logo from "@/assets/logo-nuts-nl.svg";
+import { useTranslation } from "react-i18next";
 
 // TikTok Icon SVG component
 const TikTokIcon = () => (
@@ -10,6 +11,8 @@ const TikTokIcon = () => (
 );
 
 export function NutsFooter() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-primary border-t border-border mt-auto">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -24,15 +27,14 @@ export function NutsFooter() {
               />
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              Your premium destination for the finest selection of nuts from around
-              the world.
+              {t('footer.brandDesc')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-primary-foreground mb-4">
-              Quick Links
+              {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2">
               <li>
@@ -40,7 +42,7 @@ export function NutsFooter() {
                   to="/"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Home
+                  {t('footer.home')}
                 </Link>
               </li>
               <li>
@@ -48,7 +50,7 @@ export function NutsFooter() {
                   to="/shop"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Shop
+                  {t('footer.shop')}
                 </Link>
               </li>
               <li>
@@ -56,7 +58,7 @@ export function NutsFooter() {
                   to="/sale"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Sale
+                  {t('footer.sale')}
                 </Link>
               </li>
               <li>
@@ -64,7 +66,7 @@ export function NutsFooter() {
                   to="/blog"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Blog
+                  {t('footer.blog')}
                 </Link>
               </li>
               <li>
@@ -72,7 +74,7 @@ export function NutsFooter() {
                   to="/about"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  About Us
+                  {t('footer.aboutUs')}
                 </Link>
               </li>
               <li>
@@ -80,7 +82,7 @@ export function NutsFooter() {
                   to="/contact"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Contact
+                  {t('footer.contact')}
                 </Link>
               </li>
             </ul>
@@ -89,7 +91,7 @@ export function NutsFooter() {
           {/* Customer Service */}
           <div>
             <h3 className="text-lg font-semibold text-primary-foreground mb-4">
-              Customer Service
+              {t('footer.customerService')}
             </h3>
             <ul className="space-y-2">
               <li>
@@ -97,7 +99,7 @@ export function NutsFooter() {
                   to="/shipping"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Shipping Info
+                  {t('footer.shippingInfo')}
                 </Link>
               </li>
               <li>
@@ -105,7 +107,7 @@ export function NutsFooter() {
                   to="/returns"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Returns
+                  {t('footer.returns')}
                 </Link>
               </li>
               <li>
@@ -113,7 +115,7 @@ export function NutsFooter() {
                   to="/faq"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  FAQ
+                  {t('footer.faq')}
                 </Link>
               </li>
               <li>
@@ -121,7 +123,7 @@ export function NutsFooter() {
                   to="/privacy"
                   className="text-primary-foreground/80 hover:text-secondary transition-colors text-sm"
                 >
-                  Privacy Policy
+                  {t('footer.privacyPolicy')}
                 </Link>
               </li>
             </ul>
@@ -130,7 +132,7 @@ export function NutsFooter() {
           {/* Contact & Social */}
           <div>
             <h3 className="text-lg font-semibold text-primary-foreground mb-4">
-              Stay Connected
+              {t('footer.stayConnected')}
             </h3>
             <div className="space-y-3 mb-4">
               <a
@@ -170,7 +172,7 @@ export function NutsFooter() {
         {/* Bottom Bar */}
         <div className="border-t border-border/50 mt-8 pt-6">
           <p className="text-center text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} Nutsnl. All rights reserved.
+            © {new Date().getFullYear()} {t('footer.allRightsReserved')}
           </p>
         </div>
       </div>

@@ -17,6 +17,8 @@ import { ReturnsPage } from "./pages/ReturnsPage";
 import { FAQPage } from "./pages/FAQPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { AdminPage } from "./pages/AdminPage";
+import { AdminLogin } from "./pages/AdminLogin";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -89,7 +91,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "admin",
-        element: <AdminPage />,
+        element: (
+          <ProtectedRoute>
+            <AdminPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/login",
+        element: <AdminLogin />,
       },
     ],
   },

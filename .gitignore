@@ -24,6 +24,9 @@ npm-debug.log*
 # Cache
 .cache
 
+# Server build output
+server/dist
+
 # Playwright
 /test-results/
 /playwright-report/

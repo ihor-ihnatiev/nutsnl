@@ -2,6 +2,7 @@ import { NutsHeader } from "../components/NutsHeader";
 import { NutsFooter } from "../components/NutsFooter";
 import { Calendar, User, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 
 interface BlogPost {
   id: number;
@@ -90,6 +91,7 @@ const blogPosts: BlogPost[] = [
 ];
 
 export function BlogPage() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <NutsHeader />
@@ -98,11 +100,10 @@ export function BlogPage() {
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">
-            Nuts & Nutrition Blog
+            {t('blog.title')}
           </h1>
           <p className="text-lg sm:text-xl text-black/70 max-w-3xl mx-auto">
-            Explore articles about health benefits, recipes, storage tips, and
-            everything you need to know about premium nuts.
+            {t('blog.subtitle')}
           </p>
         </div>
 
@@ -119,7 +120,7 @@ export function BlogPage() {
             <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
               <div className="inline-flex items-center space-x-2 mb-4">
                 <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-bold">
-                  Featured
+                  {t('blog.featured')}
                 </span>
                 <span className="bg-secondary/20 text-accent px-3 py-1 rounded-full text-sm">
                   {blogPosts[0].category}
@@ -149,7 +150,7 @@ export function BlogPage() {
                 to={`/blog/post/${blogPosts[0].id}`}
                 className="inline-flex items-center space-x-2 text-accent hover:text-accent/80 font-semibold transition-colors"
               >
-                <span>Read Full Article</span>
+                <span>{t('blog.readFullArticle')}</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
@@ -196,7 +197,7 @@ export function BlogPage() {
                   to={`/blog/post/${post.id}`}
                   className="inline-flex items-center space-x-2 text-accent hover:text-accent/80 font-semibold transition-colors text-sm"
                 >
-                  <span>Read More</span>
+                  <span>{t('blog.readMore')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -207,20 +208,19 @@ export function BlogPage() {
         {/* Newsletter Signup */}
         <div className="mt-12 bg-gradient-to-r from-accent to-accent/80 rounded-lg p-8 sm:p-12 text-center">
           <h3 className="text-2xl sm:text-3xl font-bold text-accent-foreground mb-4">
-            Subscribe to Our Newsletter
+            {t('blog.subscribe')}
           </h3>
           <p className="text-accent-foreground/90 mb-6 max-w-2xl mx-auto">
-            Get the latest articles, recipes, and health tips delivered straight
-            to your inbox. Join our community of nut enthusiasts!
+            {t('blog.subscribeDesc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('blog.enterEmail')}
               className="flex-1 px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary"
             />
             <button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-colors whitespace-nowrap">
-              Subscribe
+              {t('blog.subscribeBtn')}
             </button>
           </div>
         </div>

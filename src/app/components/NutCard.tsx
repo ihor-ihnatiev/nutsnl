@@ -1,6 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router";
 import { Nut } from "../data/nuts";
+import { useTranslation } from "react-i18next";
 
 interface NutCardProps {
   nut: Nut;
@@ -9,16 +10,17 @@ interface NutCardProps {
 
 export function NutCard({ nut, onAddToCart }: NutCardProps) {
   const isOnSale = nut.oldPrice && nut.oldPrice > nut.price;
-  
+  const { t } = useTranslation();
+
   return (
     <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col border border-secondary/20 relative h-full">
       {/* SALE Label */}
       {isOnSale && (
         <div className="absolute top-3 right-3 z-10 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg" style={{ backgroundColor: '#D98C2A' }}>
-          SALE
+          {t('common.sale')}
         </div>
       )}
-      
+
       <Link to={`/product/${nut.id}`}>
         <div className="aspect-square overflow-hidden bg-gray-100">
           <img
@@ -28,7 +30,7 @@ export function NutCard({ nut, onAddToCart }: NutCardProps) {
           />
         </div>
       </Link>
-      
+
       <div className="p-4 sm:p-6 flex-1 flex flex-col">
         <Link to={`/product/${nut.id}`}>
           <p className="text-sm text-card-foreground/60 mb-1">
@@ -38,10 +40,10 @@ export function NutCard({ nut, onAddToCart }: NutCardProps) {
             {nut.category} {nut.type}
           </h3>
         </Link>
-        
-        <p className="text-xs text-accent/70 mb-1">Article: {nut.article}</p>
+
+        <p className="text-xs text-accent/70 mb-1">{t('product.article', { article: nut.article })}</p>
         <p className="text-sm text-gray-600 mb-2">{nut.weight}</p>
-        
+
         <div className="mt-auto">
           {/* Price Display */}
           <div className="mb-4">
@@ -60,13 +62,13 @@ export function NutCard({ nut, onAddToCart }: NutCardProps) {
               </p>
             )}
           </div>
-          
+
           <button
             onClick={() => onAddToCart(nut)}
             className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-2 px-3 rounded-lg flex items-center justify-center space-x-2 transition-colors text-sm"
           >
             <ShoppingCart className="w-4 h-4" />
-            <span>Add to Cart</span>
+            <span>{t('product.addToCart')}</span>
           </button>
         </div>
       </div>

@@ -2,14 +2,15 @@ import { useCart } from "../context/CartContext";
 import { useNavigate, Link } from "react-router";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 import { NutsHeader } from "../components/NutsHeader";
 import { NutsFooter } from "../components/NutsFooter";
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Truck, 
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Truck,
   CheckCircle,
   ArrowLeft
 } from "lucide-react";
@@ -17,6 +18,7 @@ import {
 export function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -53,21 +55,21 @@ export function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form
     const newErrors: Record<string, string> = {};
-    if (!formData.firstName) newErrors.firstName = "First name is required";
-    if (!formData.lastName) newErrors.lastName = "Last name is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.phone) newErrors.phone = "Phone is required";
-    if (!formData.address) newErrors.address = "Address is required";
-    if (!formData.city) newErrors.city = "City is required";
-    if (!formData.postalCode) newErrors.postalCode = "Postal code is required";
-    if (!formData.country) newErrors.country = "Country is required";
+    if (!formData.firstName) newErrors.firstName = t('checkout.firstNameRequired');
+    if (!formData.lastName) newErrors.lastName = t('checkout.lastNameRequired');
+    if (!formData.email) newErrors.email = t('checkout.emailRequired');
+    if (!formData.phone) newErrors.phone = t('checkout.phoneRequired');
+    if (!formData.address) newErrors.address = t('checkout.addressRequired');
+    if (!formData.city) newErrors.city = t('checkout.cityRequired');
+    if (!formData.postalCode) newErrors.postalCode = t('checkout.postalCodeRequired');
+    if (!formData.country) newErrors.country = t('checkout.countryRequired');
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      toast.error("Please fill in all required fields");
+      toast.error(t('checkout.fillRequired'));
       return;
     }
 
@@ -77,14 +79,14 @@ export function CheckoutPage() {
     setTimeout(() => {
       clearCart();
       setIsProcessing(false);
-      toast.success("Order placed successfully! 🎉");
-      navigate("/thank-you", { 
-        state: { 
+      toast.success(t('checkout.orderSuccess'));
+      navigate("/thank-you", {
+        state: {
           orderNumber: Math.floor(100000 + Math.random() * 900000),
           email: formData.email,
           customerName: `${formData.firstName} ${formData.lastName}`,
           totalAmount: finalTotal
-        } 
+        }
       });
     }, 2000);
   };
@@ -97,16 +99,16 @@ export function CheckoutPage() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-card rounded-lg p-8 sm:p-12 shadow-lg border border-secondary/20">
               <h1 className="text-3xl sm:text-4xl font-bold text-black mb-4">
-                Your Cart is Empty
+                {t('checkout.emptyCart')}
               </h1>
               <p className="text-lg text-card-foreground/70 mb-8">
-                Add some items to your cart before checking out.
+                {t('checkout.emptyCartDesc')}
               </p>
               <Link
                 to="/shop"
                 className="inline-flex items-center space-x-2 bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg font-bold text-lg transition-colors"
               >
-                <span>Continue Shopping</span>
+                <span>{t('cart.continueShopping')}</span>
               </Link>
             </div>
           </div>
@@ -129,10 +131,10 @@ export function CheckoutPage() {
             style={{ color: '#2C2C18' }}
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Back to Cart</span>
+            <span>{t('checkout.backToCart')}</span>
           </Link>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
-            Checkout
+            {t('checkout.title')}
           </h1>
         </div>
 
@@ -145,13 +147,13 @@ export function CheckoutPage() {
                 <div className="flex items-center space-x-3 mb-6">
                   <User className="w-6 h-6 text-accent" />
                   <h2 className="text-2xl font-bold text-card-foreground">
-                    Contact Information
+                    {t('checkout.contactInfo')}
                   </h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      First Name *
+                      {t('checkout.firstName')} *
                     </label>
                     <input
                       type="text"
@@ -159,8 +161,8 @@ export function CheckoutPage() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                        errors.firstName 
-                          ? "border-accent focus:border-accent" 
+                        errors.firstName
+                          ? "border-accent focus:border-accent"
                           : "border-[#E5DCC8] focus:border-accent"
                       }`}
                       placeholder="John"
@@ -169,7 +171,7 @@ export function CheckoutPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Last Name *
+                      {t('checkout.lastName')} *
                     </label>
                     <input
                       type="text"
@@ -177,8 +179,8 @@ export function CheckoutPage() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                        errors.lastName 
-                          ? "border-accent focus:border-accent" 
+                        errors.lastName
+                          ? "border-accent focus:border-accent"
                           : "border-[#E5DCC8] focus:border-accent"
                       }`}
                       placeholder="Doe"
@@ -187,7 +189,7 @@ export function CheckoutPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Email *
+                      {t('checkout.email')} *
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#2C2C18]/40" />
@@ -197,8 +199,8 @@ export function CheckoutPage() {
                         value={formData.email}
                         onChange={handleInputChange}
                         className={`w-full pl-11 pr-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                          errors.email 
-                            ? "border-accent focus:border-accent" 
+                          errors.email
+                            ? "border-accent focus:border-accent"
                             : "border-[#E5DCC8] focus:border-accent"
                         }`}
                         placeholder="john@example.com"
@@ -208,7 +210,7 @@ export function CheckoutPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Phone *
+                      {t('checkout.phone')} *
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#2C2C18]/40" />
@@ -218,8 +220,8 @@ export function CheckoutPage() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className={`w-full pl-11 pr-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                          errors.phone 
-                            ? "border-accent focus:border-accent" 
+                          errors.phone
+                            ? "border-accent focus:border-accent"
                             : "border-[#E5DCC8] focus:border-accent"
                         }`}
                         placeholder="+1 (555) 000-0000"
@@ -235,13 +237,13 @@ export function CheckoutPage() {
                 <div className="flex items-center space-x-3 mb-6">
                   <MapPin className="w-6 h-6 text-accent" />
                   <h2 className="text-2xl font-bold text-card-foreground">
-                    Shipping Address
+                    {t('checkout.shippingAddress')}
                   </h2>
                 </div>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Street Address *
+                      {t('checkout.streetAddress')} *
                     </label>
                     <input
                       type="text"
@@ -249,8 +251,8 @@ export function CheckoutPage() {
                       value={formData.address}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                        errors.address 
-                          ? "border-accent focus:border-accent" 
+                        errors.address
+                          ? "border-accent focus:border-accent"
                           : "border-[#E5DCC8] focus:border-accent"
                       }`}
                       placeholder="123 Main Street, Apt 4B"
@@ -260,7 +262,7 @@ export function CheckoutPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-semibold text-card-foreground mb-2">
-                        City *
+                        {t('checkout.city')} *
                       </label>
                       <input
                         type="text"
@@ -268,8 +270,8 @@ export function CheckoutPage() {
                         value={formData.city}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                          errors.city 
-                            ? "border-accent focus:border-accent" 
+                          errors.city
+                            ? "border-accent focus:border-accent"
                             : "border-[#E5DCC8] focus:border-accent"
                         }`}
                         placeholder="New York"
@@ -278,7 +280,7 @@ export function CheckoutPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-card-foreground mb-2">
-                        Postal Code *
+                        {t('checkout.postalCode')} *
                       </label>
                       <input
                         type="text"
@@ -286,8 +288,8 @@ export function CheckoutPage() {
                         value={formData.postalCode}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 bg-[#F5F1E8] border rounded-lg text-[#2C2C18] placeholder:text-[#2C2C18]/50 focus:outline-none transition-colors ${
-                          errors.postalCode 
-                            ? "border-accent focus:border-accent" 
+                          errors.postalCode
+                            ? "border-accent focus:border-accent"
                             : "border-[#E5DCC8] focus:border-accent"
                         }`}
                         placeholder="10001"
@@ -296,27 +298,27 @@ export function CheckoutPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-card-foreground mb-2">
-                        Country *
+                        {t('checkout.country')} *
                       </label>
                       <select
                         name="country"
                         value={formData.country}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none transition-colors ${
-                          errors.country 
-                            ? "border-accent focus:border-accent text-[#2C2C18]" 
+                          errors.country
+                            ? "border-accent focus:border-accent text-[#2C2C18]"
                             : "border-[#E5DCC8] focus:border-accent text-[#2C2C18]"
                         }`}
                         style={{ color: '#2C2C18' }}
                       >
-                        <option value="" style={{ color: '#2C2C18' }}>Select</option>
-                        <option value="US" style={{ color: '#2C2C18' }}>United States</option>
-                        <option value="CA" style={{ color: '#2C2C18' }}>Canada</option>
-                        <option value="UK" style={{ color: '#2C2C18' }}>United Kingdom</option>
-                        <option value="AU" style={{ color: '#2C2C18' }}>Australia</option>
-                        <option value="NL" style={{ color: '#2C2C18' }}>Netherlands</option>
-                        <option value="DE" style={{ color: '#2C2C18' }}>Germany</option>
-                        <option value="FR" style={{ color: '#2C2C18' }}>France</option>
+                        <option value="" style={{ color: '#2C2C18' }}>{t('checkout.select')}</option>
+                        <option value="US" style={{ color: '#2C2C18' }}>{t('checkout.countries.US')}</option>
+                        <option value="CA" style={{ color: '#2C2C18' }}>{t('checkout.countries.CA')}</option>
+                        <option value="UK" style={{ color: '#2C2C18' }}>{t('checkout.countries.UK')}</option>
+                        <option value="AU" style={{ color: '#2C2C18' }}>{t('checkout.countries.AU')}</option>
+                        <option value="NL" style={{ color: '#2C2C18' }}>{t('checkout.countries.NL')}</option>
+                        <option value="DE" style={{ color: '#2C2C18' }}>{t('checkout.countries.DE')}</option>
+                        <option value="FR" style={{ color: '#2C2C18' }}>{t('checkout.countries.FR')}</option>
                       </select>
                       {errors.country && <p className="text-sm mt-1" style={{ color: '#2C2C18' }}>{errors.country}</p>}
                     </div>
@@ -329,7 +331,7 @@ export function CheckoutPage() {
                 <div className="flex items-center space-x-3 mb-6">
                   <Truck className="w-6 h-6 text-accent" />
                   <h2 className="text-2xl font-bold text-card-foreground">
-                    Shipping Method
+                    {t('checkout.shippingMethod')}
                   </h2>
                 </div>
                 <div className="space-y-3">
@@ -344,12 +346,12 @@ export function CheckoutPage() {
                         className="w-5 h-5 text-accent"
                       />
                       <div>
-                        <p className="font-semibold text-card-foreground">Standard Shipping</p>
-                        <p className="text-sm text-card-foreground/60">5-7 business days</p>
+                        <p className="font-semibold text-card-foreground">{t('checkout.standardShipping')}</p>
+                        <p className="text-sm text-card-foreground/60">{t('checkout.standardDays')}</p>
                       </div>
                     </div>
                     <p className="font-bold text-accent">
-                      {totalPrice > 50 ? "FREE" : "€7.99"}
+                      {totalPrice > 50 ? t('checkout.free') : "\u20AC7.99"}
                     </p>
                   </label>
                   <label className="flex items-center justify-between p-4 border-2 border-secondary/30 rounded-lg cursor-pointer hover:border-accent transition-colors">
@@ -363,11 +365,11 @@ export function CheckoutPage() {
                         className="w-5 h-5 text-accent"
                       />
                       <div>
-                        <p className="font-semibold text-card-foreground">Express Shipping</p>
-                        <p className="text-sm text-card-foreground/60">2-3 business days</p>
+                        <p className="font-semibold text-card-foreground">{t('checkout.expressShipping')}</p>
+                        <p className="text-sm text-card-foreground/60">{t('checkout.expressDays')}</p>
                       </div>
                     </div>
-                    <p className="font-bold text-accent">€15.00</p>
+                    <p className="font-bold text-accent">{"\u20AC15.00"}</p>
                   </label>
                 </div>
               </div>
@@ -378,20 +380,20 @@ export function CheckoutPage() {
           <div className="lg:col-span-1">
             <div className="bg-card rounded-lg p-6 shadow-lg border border-secondary/20 sticky top-24">
               <h2 className="text-2xl font-bold text-card-foreground mb-6">
-                Order Summary
+                {t('checkout.orderSummary')}
               </h2>
 
               {/* Items */}
               <div className="space-y-4 mb-6 max-h-60 overflow-y-auto">
                 {items.map((item) => {
                   const isOnSale = item.oldPrice && item.oldPrice > item.price;
-                  
+
                   return (
                     <div key={item.id} className="flex items-center space-x-3">
                       <div className="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 relative">
                         {isOnSale && (
                           <div className="absolute top-1 right-1 text-white px-1.5 py-0.5 rounded text-[10px] font-bold z-10" style={{ backgroundColor: '#EFB752' }}>
-                            SALE
+                            {t('common.sale')}
                           </div>
                         )}
                         <img
@@ -405,11 +407,11 @@ export function CheckoutPage() {
                           {item.name}
                         </p>
                         <p className="text-sm text-card-foreground/60">
-                          Qty: {item.quantity}
+                          {t('checkout.qty', { count: item.quantity })}
                         </p>
                         {isOnSale && (
                           <p className="text-xs text-gray-400 line-through">
-                            €{item.oldPrice!.toFixed(2)} each
+                            {t('checkout.each', { price: item.oldPrice!.toFixed(2) })}
                           </p>
                         )}
                       </div>
@@ -417,15 +419,15 @@ export function CheckoutPage() {
                         {isOnSale ? (
                           <>
                             <p className="font-bold text-sm" style={{ color: '#2C2C18' }}>
-                              €{(item.price * item.quantity).toFixed(2)}
+                              {"\u20AC"}{(item.price * item.quantity).toFixed(2)}
                             </p>
                             <p className="text-xs text-gray-400 line-through">
-                              €{(item.oldPrice! * item.quantity).toFixed(2)}
+                              {"\u20AC"}{(item.oldPrice! * item.quantity).toFixed(2)}
                             </p>
                           </>
                         ) : (
                           <p className="font-bold text-accent text-sm">
-                            €{(item.price * item.quantity).toFixed(2)}
+                            {"\u20AC"}{(item.price * item.quantity).toFixed(2)}
                           </p>
                         )}
                       </div>
@@ -437,19 +439,19 @@ export function CheckoutPage() {
               {/* Totals */}
               <div className="space-y-3 pt-4 border-t border-secondary/20">
                 <div className="flex justify-between text-card-foreground/70">
-                  <span>Subtotal</span>
-                  <span className="font-semibold">€{totalPrice.toFixed(2)}</span>
+                  <span>{t('checkout.subtotal')}</span>
+                  <span className="font-semibold">{"\u20AC"}{totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-card-foreground/70">
-                  <span>Shipping</span>
+                  <span>{t('checkout.shipping')}</span>
                   <span className="font-semibold">
-                    {shippingCost === 0 ? "FREE" : `€${shippingCost.toFixed(2)}`}
+                    {shippingCost === 0 ? t('checkout.free') : `\u20AC${shippingCost.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="border-t border-secondary/20 pt-3">
                   <div className="flex justify-between text-xl font-bold text-card-foreground">
-                    <span>Total</span>
-                    <span className="text-accent">€{finalTotal.toFixed(2)}</span>
+                    <span>{t('checkout.total')}</span>
+                    <span className="text-accent">{"\u20AC"}{finalTotal.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -463,12 +465,12 @@ export function CheckoutPage() {
                 {isProcessing ? (
                   <>
                     <div className="w-5 h-5 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin" />
-                    <span>Processing...</span>
+                    <span>{t('checkout.processing')}</span>
                   </>
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5" />
-                    <span>Place Order</span>
+                    <span>{t('checkout.placeOrder')}</span>
                   </>
                 )}
               </button>
@@ -476,7 +478,7 @@ export function CheckoutPage() {
               {/* Security Note */}
               <div className="mt-6 pt-6 border-t border-secondary/20">
                 <p className="text-xs text-card-foreground/60 text-center">
-                  🔒 Your payment information is encrypted and secure
+                  {t('checkout.securePayment')}
                 </p>
               </div>
             </div>

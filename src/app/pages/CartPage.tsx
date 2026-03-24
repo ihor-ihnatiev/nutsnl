@@ -4,18 +4,20 @@ import { useCart } from "../context/CartContext";
 import { Link } from "react-router";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 export function CartPage() {
   const { items, updateQuantity, removeFromCart, clearCart, totalPrice } = useCart();
+  const { t } = useTranslation();
 
   const handleRemoveItem = (id: number, name: string) => {
     removeFromCart(id);
-    toast.success(`${name} removed from cart`);
+    toast.success(t('cart.removedFromCart', { name }));
   };
 
   const handleClearCart = () => {
     clearCart();
-    toast.success("Cart cleared");
+    toast.success(t('cart.cartCleared'));
   };
 
   if (items.length === 0) {
@@ -27,16 +29,16 @@ export function CartPage() {
             <div className="bg-card rounded-lg p-8 sm:p-12 lg:p-16 shadow-lg border border-secondary/20">
               <ShoppingBag className="w-20 h-20 text-card-foreground/30 mx-auto mb-6" />
               <h1 className="text-3xl sm:text-4xl font-bold text-black mb-4">
-                Your Cart is Empty
+                {t('cart.empty')}
               </h1>
               <p className="text-lg text-card-foreground/70 mb-8">
-                Looks like you haven't added any items to your cart yet.
+                {t('cart.emptyDesc')}
               </p>
               <Link
                 to="/shop"
                 className="inline-flex items-center space-x-2 bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg font-bold text-lg transition-colors"
               >
-                <span>Continue Shopping</span>
+                <span>{t('cart.continueShopping')}</span>
               </Link>
             </div>
           </div>
@@ -59,11 +61,11 @@ export function CartPage() {
             style={{ color: '#2C2C18' }}
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Continue Shopping</span>
+            <span>{t('cart.continueShopping')}</span>
           </Link>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
-              Shopping Cart
+              {t('cart.title')}
             </h1>
             <button
               onClick={handleClearCart}
@@ -72,7 +74,7 @@ export function CartPage() {
               onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
               onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
-              Clear Cart
+              {t('cart.clearCart')}
             </button>
           </div>
         </div>
@@ -106,7 +108,7 @@ export function CartPage() {
                     <p className="text-sm text-card-foreground/60 mb-2">
                       {item.weight} • {item.origin}
                     </p>
-                    
+
                     {/* Price Display */}
                     {item.oldPrice && item.oldPrice > item.price ? (
                       <div className="flex items-center gap-2">
@@ -117,7 +119,7 @@ export function CartPage() {
                           €{item.oldPrice.toFixed(2)}
                         </p>
                         <span className="text-white px-2 py-0.5 rounded text-xs font-bold" style={{ backgroundColor: '#EFB752' }}>
-                          SALE
+                          {t('common.sale')}
                         </span>
                       </div>
                     ) : (
@@ -155,7 +157,7 @@ export function CartPage() {
                       onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
                     >
                       <Trash2 className="w-5 h-5" />
-                      <span className="hidden sm:inline">Remove</span>
+                      <span className="hidden sm:inline">{t('cart.remove')}</span>
                     </button>
                   </div>
                 </div>
@@ -163,7 +165,7 @@ export function CartPage() {
                 {/* Subtotal (desktop) */}
                 <div className="hidden sm:flex flex-col items-end justify-between">
                   <div className="text-right">
-                    <p className="text-sm text-card-foreground/60 mb-1">Subtotal</p>
+                    <p className="text-sm text-card-foreground/60 mb-1">{t('cart.subtotal')}</p>
                     <p className="text-xl font-bold text-accent">
                       €{(item.price * item.quantity).toFixed(2)}
                     </p>
@@ -172,7 +174,7 @@ export function CartPage() {
 
                 {/* Subtotal (mobile) */}
                 <div className="sm:hidden flex items-center justify-between pt-4 border-t border-secondary/20">
-                  <p className="text-sm text-card-foreground/60">Subtotal</p>
+                  <p className="text-sm text-card-foreground/60">{t('cart.subtotal')}</p>
                   <p className="text-xl font-bold text-accent">
                     €{(item.price * item.quantity).toFixed(2)}
                   </p>
@@ -185,21 +187,21 @@ export function CartPage() {
           <div className="lg:col-span-1">
             <div className="bg-card rounded-lg p-6 shadow-lg border border-secondary/20 sticky top-24">
               <h2 className="text-2xl font-bold text-card-foreground mb-6">
-                Order Summary
+                {t('checkout.orderSummary')}
               </h2>
 
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-card-foreground/70">
-                  <span>Subtotal</span>
+                  <span>{t('cart.subtotal')}</span>
                   <span className="font-semibold">€{totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-card-foreground/70">
-                  <span>Shipping</span>
-                  <span className="font-semibold">Calculated at checkout</span>
+                  <span>{t('cart.shipping')}</span>
+                  <span className="font-semibold">{t('cart.calculatedAtCheckout')}</span>
                 </div>
                 <div className="border-t border-secondary/20 pt-4">
                   <div className="flex justify-between text-xl font-bold text-card-foreground">
-                    <span>Total</span>
+                    <span>{t('cart.total')}</span>
                     <span className="text-accent">€{totalPrice.toFixed(2)}</span>
                   </div>
                 </div>
@@ -209,29 +211,29 @@ export function CartPage() {
                 to="/checkout"
                 className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-4 rounded-lg font-bold text-lg transition-colors mb-4 block text-center"
               >
-                Proceed to Checkout
+                {t('cart.proceedToCheckout')}
               </Link>
 
               <Link
                 to="/shop"
                 className="block text-center text-secondary hover:text-secondary/80 font-semibold transition-colors"
               >
-                Continue Shopping
+                {t('cart.continueShopping')}
               </Link>
 
               {/* Benefits */}
               <div className="mt-6 pt-6 border-t border-secondary/20 space-y-3">
                 <div className="flex items-start space-x-3 text-sm text-card-foreground/70">
                   <span className="text-accent font-bold">✓</span>
-                  <span>Free shipping on orders over €50</span>
+                  <span>{t('cart.freeShipping')}</span>
                 </div>
                 <div className="flex items-start space-x-3 text-sm text-card-foreground/70">
                   <span className="text-accent font-bold">✓</span>
-                  <span>100% money-back guarantee</span>
+                  <span>{t('cart.moneyBack')}</span>
                 </div>
                 <div className="flex items-start space-x-3 text-sm text-card-foreground/70">
                   <span className="text-accent font-bold">✓</span>
-                  <span>Secure checkout</span>
+                  <span>{t('cart.secureCheckout')}</span>
                 </div>
               </div>
             </div>

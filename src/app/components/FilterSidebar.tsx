@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useProducts } from "../context/ProductsContext";
+import { useTranslation } from "react-i18next";
 
 interface FilterSidebarProps {
   selectedCategory: string;
@@ -27,19 +28,20 @@ export function FilterSidebar({
   onClearFilters
 }: FilterSidebarProps) {
   const { products } = useProducts();
-  
+  const { t } = useTranslation();
+
   // Generate categories dynamically from products
-  const categories = ["All", ...Array.from(new Set(products.map(p => p.category))).sort()];
-  
+  const categories = [t('common.all'), ...Array.from(new Set(products.map(p => p.category))).sort()];
+
   // Calculate max possible price from products
   const maxPossiblePrice = Math.ceil(Math.max(...products.map(p => p.price), 25));
-  
+
   const content = (
     <div className="p-6 rounded-lg" style={{ backgroundColor: '#3E3E1F' }}>
       {/* Mobile close button */}
       {isMobileOpen && (
         <div className="flex justify-between items-center mb-6 lg:hidden">
-          <h2 className="text-xl font-semibold text-primary-foreground">Filters</h2>
+          <h2 className="text-xl font-semibold text-primary-foreground">{t('filter.filters')}</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-white/10 rounded-lg transition-colors"
@@ -52,20 +54,20 @@ export function FilterSidebar({
       {/* Categories */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-primary-foreground mb-4">
-          Categories
+          {t('filter.categories')}
         </h3>
         <div className="space-y-2">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => {
-                onCategoryChange(category);
+                onCategoryChange(category === t('common.all') ? "All" : category);
                 if (isMobileOpen && onClose) {
                   onClose();
                 }
               }}
               className={`w-full text-left px-4 py-2.5 rounded-lg transition-colors ${
-                selectedCategory === category
+                (selectedCategory === "All" && category === t('common.all')) || selectedCategory === category
                   ? "bg-secondary text-secondary-foreground font-medium"
                   : "text-primary-foreground hover:bg-white/10"
               }`}
@@ -79,12 +81,12 @@ export function FilterSidebar({
       {/* Price Range */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-primary-foreground mb-4">
-          Price Range
+          {t('filter.priceRange')}
         </h3>
         <div className="space-y-4">
           <div>
             <label className="text-sm text-primary-foreground mb-2 block">
-              Min Price: €{minPrice}
+              {t('filter.minPrice', { price: minPrice })}
             </label>
             <input
               type="range"
@@ -101,7 +103,7 @@ export function FilterSidebar({
           </div>
           <div>
             <label className="text-sm text-primary-foreground mb-2 block">
-              Max Price: €{maxPrice}
+              {t('filter.maxPrice', { price: maxPrice })}
             </label>
             <input
               type="range"
@@ -129,7 +131,7 @@ export function FilterSidebar({
             className="w-5 h-5 rounded border-2 border-secondary text-secondary focus:ring-2 focus:ring-secondary cursor-pointer"
           />
           <span className="text-primary-foreground font-medium group-hover:text-secondary transition-colors">
-            🏷️ Show only sale items
+            {t('filter.showOnlySale')}
           </span>
         </label>
       </div>
@@ -145,7 +147,7 @@ export function FilterSidebar({
           }}
           className="mt-6 w-full py-2.5 px-4 rounded-lg border border-secondary text-secondary font-medium hover:bg-secondary hover:text-secondary-foreground transition-colors"
         >
-          Clear all filters
+          {t('filter.clearAll')}
         </button>
       )}
     </div>

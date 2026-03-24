@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Link } from "react-router";
 import { useProducts } from "../context/ProductsContext";
+import { useTranslation } from "react-i18next";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -12,11 +13,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const { products } = useProducts();
   const [searchQuery, setSearchQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isOpen) {
       setSearchQuery("");
-      // Focus input when modal opens
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
@@ -24,7 +25,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   }, [isOpen]);
 
   useEffect(() => {
-    // Close on escape key
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
@@ -60,13 +60,12 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     onClose();
   };
 
-  // Function to highlight matching text
   const highlightText = (text: string, query: string) => {
     if (!query.trim()) return text;
-    
+
     const regex = new RegExp(`(${query})`, "gi");
     const parts = text.split(regex);
-    
+
     return parts.map((part, index) =>
       regex.test(part) ? (
         <mark key={index} className="bg-accent/30 text-accent font-semibold">
@@ -95,7 +94,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search by name, category, origin, or article number..."
+              placeholder={t('search.placeholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 bg-transparent text-lg text-card-foreground placeholder:text-card-foreground/50 focus:outline-none"
@@ -115,16 +114,16 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <div className="text-center py-12">
               <Search className="w-16 h-16 text-card-foreground/30 mx-auto mb-4" />
               <p className="text-card-foreground/60 text-lg">
-                Start typing to search for products
+                {t('search.startTyping')}
               </p>
               <p className="text-card-foreground/40 text-sm mt-2">
-                Try searching by name, category, or origin
+                {t('search.trySearching')}
               </p>
             </div>
           ) : filteredNuts.length > 0 ? (
             <div>
               <p className="text-sm text-card-foreground/60 mb-4">
-                Found {filteredNuts.length} {filteredNuts.length === 1 ? "result" : "results"}
+                {t('search.found', { count: filteredNuts.length })}
               </p>
               <div className="space-y-3">
                 {filteredNuts.map((nut) => (
@@ -149,7 +148,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         {highlightText(nut.category, searchQuery)} • {highlightText(nut.origin, searchQuery)}
                       </p>
                       <p className="text-xs text-card-foreground/40 mb-1">
-                        Article: {highlightText(nut.article, searchQuery)}
+                        {t('product.article', { article: '' })}{highlightText(nut.article, searchQuery)}
                       </p>
                       <p className="text-sm text-card-foreground/50 line-clamp-1">
                         {nut.description}
@@ -167,10 +166,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
           ) : (
             <div className="text-center py-12">
               <p className="text-card-foreground/60 text-lg mb-2">
-                No results found for "{searchQuery}"
+                {t('search.noResults', { query: searchQuery })}
               </p>
               <p className="text-card-foreground/40 text-sm">
-                Try searching with different keywords
+                {t('search.tryDifferent')}
               </p>
             </div>
           )}
@@ -179,7 +178,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         {/* Quick Links */}
         {searchQuery.length === 0 && (
           <div className="p-4 sm:p-6 border-t border-secondary/20">
-            <p className="text-sm text-card-foreground/60 mb-3">Popular Categories</p>
+            <p className="text-sm text-card-foreground/60 mb-3">{t('search.popularCategories')}</p>
             <div className="flex flex-wrap gap-2">
               {["Almonds", "Walnuts", "Cashews", "Pistachios", "Hazelnuts"].map((category) => (
                 <Link

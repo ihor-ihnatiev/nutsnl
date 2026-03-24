@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { NutsHeader } from "../components/NutsHeader";
 import { NutsFooter } from "../components/NutsFooter";
 import { useProducts } from "../context/ProductsContext";
-import { Plus, Edit2, Trash2, RotateCcw, Package, Upload, FileSpreadsheet, Download } from "lucide-react";
+import { Plus, Edit2, Trash2, RotateCcw, Package, Upload, FileSpreadsheet, Download, X } from "lucide-react";
 import { toast } from "sonner";
 
 export function AdminPage() {
-  const { products, addProduct, updateProduct, deleteProduct, resetProducts } = useProducts();
+  const { products, addProduct, updateProduct, deleteProduct, resetProducts, categories, addCategory, deleteCategory } = useProducts();
+  const formRef = useRef<HTMLDivElement>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<number | null>(null);
+  const [newCategory, setNewCategory] = useState("");
   const [googleSheetsUrl, setGoogleSheetsUrl] = useState("");
   const [isImporting, setIsImporting] = useState(false);
   
@@ -94,6 +96,9 @@ export function AdminPage() {
     });
     setEditingProduct(product.id);
     setIsFormOpen(true);
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -458,9 +463,78 @@ export function AdminPage() {
           </div>
         </div>
 
+        {/* Manage Categories */}
+        <div className="bg-card rounded-lg p-6 mb-8 border-2 border-accent/20">
+          <h2 className="text-2xl font-bold text-card-foreground mb-6">Manage Categories</h2>
+
+          {/* Add new category */}
+          <div className="flex gap-3 mb-6">
+            <input
+              type="text"
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && newCategory.trim()) {
+                  addCategory(newCategory);
+                  setNewCategory("");
+                }
+              }}
+              placeholder="New category name..."
+              className="flex-1 px-4 py-3 bg-[#F5F1E8] border border-[#E5DCC8] rounded-lg text-[#2C2C18] focus:outline-none focus:border-accent"
+            />
+            <button
+              onClick={() => {
+                if (newCategory.trim()) {
+                  addCategory(newCategory);
+                  setNewCategory("");
+                }
+              }}
+              disabled={!newCategory.trim()}
+              className="flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-lg hover:bg-accent/90 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <Plus className="w-4 h-4" />
+              Add
+            </button>
+          </div>
+
+          {/* Category list */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => {
+              const productCount = products.filter(p => p.category === cat).length;
+              return (
+                <div
+                  key={cat}
+                  className="flex items-center gap-2 px-4 py-2 bg-[#F5F1E8] border border-[#E5DCC8] rounded-lg group"
+                >
+                  <span className="text-[#2C2C18] font-medium">{cat}</span>
+                  <span className="text-xs text-[#2C2C18]/50">({productCount})</span>
+                  <button
+                    onClick={() => {
+                      if (productCount > 0) {
+                        if (!window.confirm(`Category "${cat}" has ${productCount} product(s). Delete anyway?`)) {
+                          return;
+                        }
+                      }
+                      deleteCategory(cat);
+                    }}
+                    className="ml-1 p-0.5 text-[#2C2C18]/30 hover:text-red-500 transition-colors"
+                    title={`Delete ${cat}`}
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          {categories.length === 0 && (
+            <p className="text-card-foreground/50 text-sm">No categories yet. Add one above.</p>
+          )}
+        </div>
+
         {/* Add/Edit Form */}
         {isFormOpen && (
-          <div className="bg-card rounded-lg p-6 mb-8 border-2 border-accent/20">
+          <div ref={formRef} className="bg-card rounded-lg p-6 mb-8 border-2 border-accent/20">
             <h2 className="text-2xl font-bold text-card-foreground mb-6">
               {editingProduct ? "Edit Product" : "Add New Product"}
             </h2>
@@ -502,14 +576,9 @@ export function AdminPage() {
                     className="w-full px-4 py-3 bg-[#F5F1E8] border border-[#E5DCC8] rounded-lg text-[#2C2C18] focus:outline-none focus:border-accent"
                   >
                     <option value="">Select Category</option>
-                    <option value="Almonds">Almonds</option>
-                    <option value="Walnuts">Walnuts</option>
-                    <option value="Cashews">Cashews</option>
-                    <option value="Pistachios">Pistachios</option>
-                    <option value="Hazelnuts">Hazelnuts</option>
-                    <option value="Peanuts">Peanuts</option>
-                    <option value="Mixed Nuts">Mixed Nuts</option>
-                    <option value="Other">Other</option>
+                    {categories.map((cat) => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
                   </select>
                 </div>
 

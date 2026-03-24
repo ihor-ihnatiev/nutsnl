@@ -4,12 +4,15 @@ import logo from "@/assets/logo-nuts-nl.svg";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
 import { SearchModal } from "./SearchModal";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 export function NutsHeader() {
   const location = useLocation();
   const { totalItems } = useCart();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  
+  const { t } = useTranslation();
+
   const isActive = (path: string) => {
     if (path === "/") {
       return location.pathname === "/";
@@ -38,7 +41,7 @@ export function NutsHeader() {
                 isActive("/") ? "border-b-2 border-secondary" : ""
               }`}
             >
-              Home
+              {t('nav.home')}
             </Link>
             <Link
               to="/shop"
@@ -46,7 +49,7 @@ export function NutsHeader() {
                 isActive("/shop") ? "border-b-2 border-secondary" : ""
               }`}
             >
-              Shop
+              {t('nav.shop')}
             </Link>
             <Link
               to="/sale"
@@ -54,7 +57,7 @@ export function NutsHeader() {
                 isActive("/sale") ? "border-b-2 border-secondary" : ""
               }`}
             >
-              Sale
+              {t('nav.sale')}
             </Link>
             <Link
               to="/blog"
@@ -62,7 +65,7 @@ export function NutsHeader() {
                 isActive("/blog") ? "border-b-2 border-secondary" : ""
               }`}
             >
-              Blog
+              {t('nav.blog')}
             </Link>
             <Link
               to="/about"
@@ -70,7 +73,7 @@ export function NutsHeader() {
                 isActive("/about") ? "border-b-2 border-secondary" : ""
               }`}
             >
-              About
+              {t('nav.about')}
             </Link>
             <Link
               to="/contact"
@@ -78,12 +81,15 @@ export function NutsHeader() {
                 isActive("/contact") ? "border-b-2 border-secondary" : ""
               }`}
             >
-              Contacts
+              {t('nav.contacts')}
             </Link>
           </nav>
 
           {/* Icons */}
           <div className="flex items-center space-x-2">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
             {/* Search Icon */}
             <button
               className="p-2 hover:bg-white/10 rounded-lg transition-colors"

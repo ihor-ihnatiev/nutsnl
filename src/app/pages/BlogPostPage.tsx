@@ -3,6 +3,7 @@ import { NutsFooter } from "../components/NutsFooter";
 import { Calendar, User, Clock, ArrowLeft, Share2 } from "lucide-react";
 import { Link, useParams } from "react-router";
 import heroImage from "@/assets/nuts-tips.png";
+import { useTranslation } from "react-i18next";
 
 interface BlogPostData {
   id: number;
@@ -107,20 +108,16 @@ export function BlogPostPage() {
   const { id } = useParams<{ id: string }>();
   const postId = id ? parseInt(id) : 2;
   const post = blogPostsData[postId];
+  const { t } = useTranslation();
 
   if (!post) {
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <NutsHeader />
         <div className="container mx-auto px-4 py-20 text-center flex-1">
-          <h1 className="text-3xl font-bold text-black mb-4">
-            Article Not Found
-          </h1>
-          <Link
-            to="/blog"
-            className="text-accent hover:text-accent/80 font-semibold"
-          >
-            ← Back to Blog
+          <h1 className="text-3xl font-bold text-black mb-4">{t('blog.articleNotFound')}</h1>
+          <Link to="/blog" className="text-accent hover:text-accent/80 font-semibold">
+            ← {t('blog.backToBlog')}
           </Link>
         </div>
         <NutsFooter />
@@ -133,44 +130,24 @@ export function BlogPostPage() {
       <NutsHeader />
 
       <article className="flex-1">
-        {/* Hero Image */}
         <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover"
-          />
+          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
         </div>
 
-        {/* Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-32 relative z-10 pb-12 sm:pb-16 lg:pb-20">
           <div className="max-w-4xl mx-auto">
-            {/* Back Button */}
-            <Link
-              to="/blog"
-              className="inline-flex items-center space-x-2 text-secondary hover:text-secondary/80 font-semibold mb-6 transition-colors"
-            >
+            <Link to="/blog" className="inline-flex items-center space-x-2 text-secondary hover:text-secondary/80 font-semibold mb-6 transition-colors">
               <ArrowLeft className="w-5 h-5" />
-              <span>Back to Blog</span>
+              <span>{t('blog.backToBlog')}</span>
             </Link>
 
-            {/* Article Header */}
             <div className="bg-card rounded-lg p-6 sm:p-8 lg:p-10 shadow-xl border border-secondary/20 mb-8">
               <div className="mb-4">
-                <span className="bg-secondary/20 text-accent px-4 py-2 rounded-full text-sm font-bold">
-                  {post.category}
-                </span>
+                <span className="bg-secondary/20 text-accent px-4 py-2 rounded-full text-sm font-bold">{post.category}</span>
               </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 leading-tight">
-                {post.title}
-              </h1>
-
-              <p className="text-lg sm:text-xl text-card-foreground/70 mb-8 leading-relaxed">
-                {post.excerpt}
-              </p>
-
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 leading-tight">{post.title}</h1>
+              <p className="text-lg sm:text-xl text-card-foreground/70 mb-8 leading-relaxed">{post.excerpt}</p>
               <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-card-foreground/60 pb-6 border-b border-secondary/20">
                 <div className="flex items-center space-x-2">
                   <User className="w-5 h-5" />
@@ -186,40 +163,23 @@ export function BlogPostPage() {
                 </div>
                 <button className="ml-auto flex items-center space-x-2 text-accent hover:text-accent/80 transition-colors">
                   <Share2 className="w-5 h-5" />
-                  <span>Share</span>
+                  <span>{t('blog.share')}</span>
                 </button>
               </div>
             </div>
 
-            {/* Article Body */}
             <div className="bg-card rounded-lg p-6 sm:p-8 lg:p-10 shadow-xl border border-secondary/20">
-              {/* Introduction */}
-              <p className="text-base sm:text-lg text-card-foreground/80 leading-relaxed mb-8">
-                {post.content.introduction}
-              </p>
-
-              {/* Sections */}
+              <p className="text-base sm:text-lg text-card-foreground/80 leading-relaxed mb-8">{post.content.introduction}</p>
               {post.content.sections.map((section, index) => (
                 <div key={index} className="mb-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-card-foreground mb-4">
-                    {section.title}
-                  </h2>
-                  <p className="text-base sm:text-lg text-card-foreground/80 leading-relaxed mb-4">
-                    {section.content}
-                  </p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-card-foreground mb-4">{section.title}</h2>
+                  <p className="text-base sm:text-lg text-card-foreground/80 leading-relaxed mb-4">{section.content}</p>
                   {section.tips && (
                     <ul className="space-y-3 ml-4">
                       {section.tips.map((tip, tipIndex) => (
-                        <li
-                          key={tipIndex}
-                          className="flex items-start space-x-3"
-                        >
-                          <span className="text-accent font-bold text-xl mt-0.5">
-                            •
-                          </span>
-                          <span className="text-base sm:text-lg text-card-foreground/80 leading-relaxed">
-                            {tip}
-                          </span>
+                        <li key={tipIndex} className="flex items-start space-x-3">
+                          <span className="text-accent font-bold text-xl mt-0.5">•</span>
+                          <span className="text-base sm:text-lg text-card-foreground/80 leading-relaxed">{tip}</span>
                         </li>
                       ))}
                     </ul>
@@ -227,44 +187,27 @@ export function BlogPostPage() {
                 </div>
               ))}
 
-              {/* Conclusion */}
               <div className="bg-secondary/10 rounded-lg p-6 sm:p-8 border-l-4 border-accent mt-10">
-                <h2 className="text-2xl sm:text-3xl font-bold text-card-foreground mb-4">
-                  Conclusion
-                </h2>
-                <p className="text-base sm:text-lg text-card-foreground/80 leading-relaxed">
-                  {post.content.conclusion}
-                </p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-card-foreground mb-4">{t('blog.conclusion')}</h2>
+                <p className="text-base sm:text-lg text-card-foreground/80 leading-relaxed">{post.content.conclusion}</p>
               </div>
 
-              {/* Author Bio */}
               <div className="mt-10 pt-8 border-t border-secondary/20">
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
                     <User className="w-8 h-8 text-accent" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-card-foreground mb-2">
-                      About {post.author}
-                    </h3>
-                    <p className="text-card-foreground/70 leading-relaxed">
-                      {post.author} is a nutrition expert and food storage specialist
-                      with over 10 years of experience helping people make the most
-                      of their healthy food choices. Passionate about sustainable
-                      living and reducing food waste.
-                    </p>
+                    <h3 className="text-xl font-bold text-card-foreground mb-2">{t('blog.aboutAuthor', { author: post.author })}</h3>
+                    <p className="text-card-foreground/70 leading-relaxed">{t('blog.authorBio', { author: post.author })}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Related Articles CTA */}
             <div className="mt-10 text-center">
-              <Link
-                to="/blog"
-                className="inline-flex items-center space-x-2 bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg font-bold text-lg transition-colors shadow-lg"
-              >
-                <span>Read More Articles</span>
+              <Link to="/blog" className="inline-flex items-center space-x-2 bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg font-bold text-lg transition-colors shadow-lg">
+                <span>{t('blog.readMoreArticles')}</span>
               </Link>
             </div>
           </div>
