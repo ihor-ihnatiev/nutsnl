@@ -8,6 +8,9 @@ const languages = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
   { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+  { code: 'ar', label: 'العربية', flag: '🇸🇦' },
+  { code: 'tr', label: 'Türkçe', flag: '🇹🇷' },
+  { code: 'ru', label: 'Русский', flag: '🇷🇺' },
 ];
 
 export function LanguageSwitcher() {
